@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Terrain.TerrainObjects;
 using UnityEngine;
 
 namespace Terrain
@@ -24,14 +25,20 @@ namespace Terrain
 
         private void Start()
         {
-            terrains.ForEach(t => t.SetUp());
-            terrains.ForEach(t => t.ColorVertices());
+            UpdateTerrain();
         }
 
         private void FixedUpdate()
         {
             settings.ClearStatistics();
-            terrains.ForEach(t => t.SetUp());
+            UpdateTerrain();
+        }
+
+        private void UpdateTerrain()
+        {
+            terrains.ForEach(t => t.SetUp(this));
+            settings.ClearStatistics();
+            terrains.ForEach(t => t.SmoothOutVertices());
             terrains.ForEach(t => t.ColorVertices());
         }
     }

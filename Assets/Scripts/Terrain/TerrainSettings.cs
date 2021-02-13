@@ -13,18 +13,22 @@ namespace Terrain
         public float MinLevel => minLevel;
         public int Resolution => resolution;
         public int OctaveCount => octaveCount;
-        public Gradient Gradient => gradient;
+        public Gradient UpperGradient => upperGradient;
+        public Gradient BottomGradient => bottomGradient;
         public AnimationCurve Curve => curve;
-        public int Modifier => modifier;
+        public int UpperModifier => upperModifier;
+        public int BottomModifier => bottomModifier;
         
         [SerializeField] private Vector2 offset;
         [SerializeField] private float scale;
         [SerializeField] private float minLevel;
         [SerializeField] private int resolution;
         [SerializeField] private int octaveCount;
-        [SerializeField] private Gradient gradient;
+        [SerializeField] private Gradient upperGradient;
+        [SerializeField] private Gradient bottomGradient;
         [SerializeField] private AnimationCurve curve;
-        [SerializeField] private int modifier;
+        [SerializeField] private int upperModifier;
+        [SerializeField] private int bottomModifier;
 
         public void ClearStatistics()
         {

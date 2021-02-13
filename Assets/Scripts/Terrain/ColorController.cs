@@ -11,14 +11,6 @@ namespace Terrain
             this.settings = settings;
         }
 
-        public Color GetColor(float terrainHeight)
-        {
-            var color = settings.Gradient.Evaluate(Mathf.InverseLerp(settings.Min, settings.Max, terrainHeight));
-            if (terrainHeight <= settings.MinLevel)
-            {
-                color.a = 0;
-            }
-            return color;
-        }
+
     }
 }

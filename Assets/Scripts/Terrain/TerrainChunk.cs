@@ -18,8 +18,6 @@ namespace Terrain
         public void ConstructMesh()
         {
             var vertices = new Vector3[Resolution * Resolution];
-            var triangles = new int[(Resolution - 1) * (Resolution - 1) * 6];
-            var trianglesIndex = 0;
 
             for (int y = 0; y < Resolution; y++)
             {
@@ -27,30 +25,12 @@ namespace Terrain
                 {
                     int i = x + y * Resolution;
                     CreateVertice(x, y, i);
-                    
-                    if (x == Resolution - 1 || y == Resolution - 1)
-                        continue;
-                    
-                    CreateTriangles(i);
                 }
             }
             
             mesh.Clear();
             mesh.vertices = vertices;
-            mesh.triangles = triangles;
             mesh.RecalculateNormals();
-
-            void CreateTriangles(int i)
-            {
-                triangles[trianglesIndex] = i;
-                triangles[trianglesIndex + 1] = i + Resolution;
-                triangles[trianglesIndex + 2] = i + Resolution + 1;
-
-                triangles[trianglesIndex + 3] = i;
-                triangles[trianglesIndex + 4] = i + Resolution + 1;
-                triangles[trianglesIndex + 5] = i + 1;
-                trianglesIndex += 6;
-            }
 
             void CreateVertice(int x, int y, int i)
             {
@@ -64,6 +44,11 @@ namespace Terrain
         {
             mesh.vertices = vertices;
             mesh.RecalculateNormals();
+        }
+
+        public void ChangeTriangles(int[] triangles)
+        {
+            mesh.triangles = triangles;
         }
 
         public void ChangeColor(Color[] colors)

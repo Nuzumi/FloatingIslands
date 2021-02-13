@@ -20,8 +20,7 @@ namespace Terrain
             {
                 value += GetOctaveValue(chunkPosition, vertexPosition, i) * ((float)i % 2 == 0 ? -1f: 1f);
             }
-
-            return Mathf.Max(settings.MinLevel, value) * settings.Modifier;
+            return value;
         }
 
         private float GetOctaveValue(Vector3 chunkPosition, Vector2Int vertexPosition, int octave)
